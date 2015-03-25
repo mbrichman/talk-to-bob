@@ -15,15 +15,15 @@
 (defn bob-response [input]
   (let [suffix (last-char input) ]
     (cond
-      (= suffix "?") (println "Sure")
-      (shouting? input) (println "Whoa, Chill out!")
-      (> (count input) 0 )(println "Whatever")
-      )))
+      (= suffix "?") (def result "Sure")
+      (shouting? input) (def result "Whoa, Chill out!")
+      (> (count input) 0 )(def result "Whatever")
+      ) result ))
 
 (defn ask-bob []
   (ask)
   (let [source (read-line)]
-  (bob-response source)))
+  (println(bob-response source))))
 
 (defn talk-to-bob []
   (while true (ask-bob)))
