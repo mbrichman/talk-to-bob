@@ -23,9 +23,9 @@
 (defn ask-bob []
   (ask)
   (let [source (read-line)]
-  (println(bob-response source))))
+  (println (bob-response source))))
 
 (defn talk-to-bob []
   (while true (ask-bob)))
 
-(talk-to-bob)
+; (talk-to-bob)
