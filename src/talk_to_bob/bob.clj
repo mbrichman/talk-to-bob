@@ -5,20 +5,21 @@
 
 (defn last-char [input] (str(last input)))
 
-(defn is-uppercase [string]
-  (let [input (apply str (re-seq #"[a-zA-Z]" string))]
-    (= input (clojure.string/upper-case input))))
-
-(defn shouting? [input]
-  (and (is-uppercase input) (= (last-char input) "!")))
+(defn check-uppercase [string]
+  (first (re-seq #"\p{Lu}{2,}" string)))
 
 (defn bob-response [input]
   (let [suffix (last-char input) ]
     (cond
-      (= suffix "?") (def result "Sure")
-      (shouting? input) (def result "Whoa, Chill out!")
-      (> (count input) 0 )(def result "Whatever")
-      ) result ))
+      (= suffix "?")
+      "Sure"
+      (check-uppercase input)
+      "Whoa, Chill out!"
+      (clojure.string/blank? input)
+      "Fine. Be that way."
+      :else
+      "Whatever"
+      )))
 
 (defn ask-bob []
   (ask)
